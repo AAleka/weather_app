@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+function getWeather(){
+	fetch("http://api.weatherstack.com/current?access_key=818c0d750f87dd069bf8882b3e0086f4&query=Istanbul&units=m")
+	.then(a => a.json())
+	.then(responce => {
+		document.getElementById("image1").src=responce.current.weather_icons[0];
+		document.getElementById("output1").innerHTML="<h1>"+responce.current.weather_descriptions[0]+"</h1><br> Temperature:"+responce.current.temperature;
+	});
+	
+	fetch("http://api.weatherstack.com/current?access_key=818c0d750f87dd069bf8882b3e0086f4&query=Oslo&units=m")
+	.then(a => a.json())
+	.then(responce => {
+		document.getElementById("image2").src=responce.current.weather_icons[0];
+		document.getElementById("output2").innerHTML="<h1>"+responce.current.weather_descriptions[0]+"</h1><br> Temperature:"+responce.current.temperature;
+	});
+}
+
+
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather</title>
+</head>
+
+<body onload="getWeather()">
+	<div>
+		<div style="float: left; margin-left: 300px;">
+			<div>The weather in Istanbul</div>
+			<img id="image1" style="height: 50px;"/>
+			<div id="output1"></div>
+		</div>
+	
+		<div style="float: right; margin-right: 300px;">
+			<div>The weather in Oslo</div>
+			<img id="image2" style="height: 50px;"/>
+			<div id="output2"></div>
+		</div>
+	</div>
+</body>
+</html>
